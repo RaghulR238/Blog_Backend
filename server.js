@@ -29,8 +29,8 @@ app.get("/displayAll",displayAll);
 app.get("/display/:title",display_By_Id);
 
 
-
-app.listen(3001,()=>{
+const port = process.env.PORT || 8000
+app.listen(port,()=>{
     connect();
     console.log("Server started working");
 })
