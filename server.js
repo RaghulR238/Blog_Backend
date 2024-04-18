@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { UploadedBlog, createBlog, deleteBlog, displayAll, display_By_Id } from "./controller.js";
 import cors from "cors";
+import { checkLogin, login } from "./userController.js";
 
 const app=express();
 console.log("hello")
@@ -25,12 +26,15 @@ app.get("/",(req,res)=>{
 app.post("/createBlog",createBlog);
 app.put("/updateBlog/:Id",UploadedBlog);
 app.delete("/deleteblog/:Id",deleteBlog);
-app.get("/displayAll",displayAll);
+app.get("/displayAll",checkLogin,displayAll);
 app.get("/display/:title",display_By_Id);
+app.post("/addNewUser",login);
+
+
 
 
 const port = process.env.PORT || 8000
-app.listen(port,()=>{
+app.listen(3001,()=>{
     connect();
     console.log("Server started working");
 })
